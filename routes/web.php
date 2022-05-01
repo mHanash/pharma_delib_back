@@ -2,6 +2,9 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\LoginAccessController;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,3 +19,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/generate', ['as' => 'generate', 'uses' => 'LoginAccessController@generate']);
+$router->post('/check', ['as' => 'check', 'uses' => 'LoginAccessController@check']);
+
+$router->group(['prefix' => 'teacher'], function () use ($router) {
+    $router->get('/courses/{teacher_id}', ['as' => 'teacher-courses', 'uses' => 'TeacherController@courses']);
+});
+

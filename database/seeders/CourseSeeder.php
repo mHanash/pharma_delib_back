@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Course;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Seeders\UserSeeder;
 
-class DatabaseSeeder extends Seeder
+class CourseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call('UserSeeder');
+        Course::factory()->count(150)->create();
     }
 }

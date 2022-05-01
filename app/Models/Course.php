@@ -8,10 +8,11 @@ use App\Models\Professor;
 use App\Models\Examen;
 use App\Models\AnnualWork;
 use App\Models\Promotion;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasFactory;
 
     protected $fillable = [
         'title',
