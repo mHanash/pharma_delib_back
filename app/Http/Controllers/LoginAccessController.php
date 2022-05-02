@@ -60,4 +60,30 @@ class LoginAccessController extends Controller
         ];
     }
 
+    public function checklink (Request $request) {
+        
+        $link = $request->link;
+
+        $access = LoginAccess::where('link', $link)->first(); 
+
+        if ($access !== null) {
+            $user = $access->user;
+
+            $datas = [
+                'success' => true,
+                'user' => $user,
+                'professor' => $user->professor
+            ];
+
+            return response($datas)
+                ->header('Access-Control-Allow-Origin', 'http://localhost:8081')
+                ->header('Access-Control-Allow-Headers', 'Accept, Origin, Content-Type, X-Auth-Token');
+        }
+
+        return [
+            'success' => false
+        ];
+
+    }
+
 }

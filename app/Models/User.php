@@ -41,7 +41,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     }
 
     public function professor(){
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Professor::class);
     }
 
     public function roles(){

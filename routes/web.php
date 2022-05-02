@@ -16,14 +16,19 @@ use App\Http\Controllers\LoginAccessController;
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->group(['middleware' => 'cors'], function () use ($router) {
 
-$router->get('/generate', ['as' => 'generate', 'uses' => 'LoginAccessController@generate']);
-$router->post('/check', ['as' => 'check', 'uses' => 'LoginAccessController@check']);
+    $router->get('/', function () use ($router) {
+        return $router->app->version();
+    });
 
-$router->group(['prefix' => 'teacher'], function () use ($router) {
-    $router->get('/courses/{teacher_id}', ['as' => 'teacher-courses', 'uses' => 'TeacherController@courses']);
+    $router->get('/generate', ['as' => 'generate', 'uses' => 'LoginAccessController@generate']);
+    $router->post('/check', ['as' => 'check', 'uses' => 'LoginAccessController@check']);
+    $router->post('/checklink', ['as' => 'check', 'uses' => 'LoginAccessController@checklink']);
+
+    $router->group(['prefix' => 'teacher'], function () use ($router) {
+        $router->get('/courses/{teacher_id}', ['as' => 'teacher-courses', 'uses' => 'TeacherController@courses']);
+    });
+
 });
 
