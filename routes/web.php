@@ -23,8 +23,12 @@ $router->group(['middleware' => 'cors'], function () use ($router) {
     });
 
     $router->get('/generate', ['as' => 'generate', 'uses' => 'LoginAccessController@generate']);
+    
     $router->post('/check', ['as' => 'check', 'uses' => 'LoginAccessController@check']);
-    $router->post('/checklink', ['as' => 'check', 'uses' => 'LoginAccessController@checklink']);
+    
+    $router->post('/checklink', ['as' => 'checklink', 'uses' => 'LoginAccessController@checklink']);
+    
+    $router->post('/edit-credentials', ['as' => 'editcredentials', 'uses' => 'UserController@edit_credentials']);
 
     $router->group(['prefix' => 'teacher'], function () use ($router) {
         $router->get('/courses/{teacher_id}', ['as' => 'teacher-courses', 'uses' => 'TeacherController@courses']);
