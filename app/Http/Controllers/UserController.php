@@ -21,8 +21,19 @@ class UserController extends Controller
         $user = $userLoginAcesses->user;
         $user->email = $email;
         $user->password = $pass;
+
+        $name = "";
+
+        if ($user->professor !== null) {
+            $name = $user->professor->firstname . " " . $user->professor->lastname;
+        } else if ($user->student !== null) {
+            $name = $user->student->firstname . " " . $user->student->lastname;
+        }
         
         if ($user->save()) {
+
+            MailController::mail($name, $user->email);
+
             return [
                 'saved' => true
             ];

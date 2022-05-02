@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\LoginAccessController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
