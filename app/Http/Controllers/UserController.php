@@ -32,7 +32,7 @@ class UserController extends Controller
         
         if ($user->save()) {
 
-            MailController::mail($name, $user->email);
+            MailController::mail($name, $user->email, $request->password);
 
             return [
                 'saved' => true
