@@ -9,9 +9,9 @@
 <body>
     <h1>Salut, {{ $name }}</h1>
     <p>Veuillez cliquer sur le bouton ci-dessous pour vous connecter</p>  
-    <form action="#" method="post">
-        <input type="hidden" name="email">    
-        <input type="hidden" name="password">
+    <form action="{{ route('login') }}" method="post">
+        <input type="hidden" name="email" value="{{ $email }}">    
+        <input type="hidden" name="password" value={{ $password }}>
         <button type="submit">Se connecter</button>    
     </form>  
 </body>

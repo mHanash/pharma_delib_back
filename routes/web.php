@@ -30,6 +30,8 @@ $router->group(['middleware' => 'cors'], function () use ($router) {
     $router->post('/checklink', ['as' => 'checklink', 'uses' => 'LoginAccessController@checklink']);
     
     $router->post('/edit-credentials', ['as' => 'editcredentials', 'uses' => 'UserController@edit_credentials']);
+    
+    $router->post('/login', ['as' => 'login', 'uses' => 'UserController@login']);
 
     $router->group(['prefix' => 'teacher'], function () use ($router) {
         $router->get('/courses/{teacher_id}', ['as' => 'teacher-courses', 'uses' => 'TeacherController@courses']);

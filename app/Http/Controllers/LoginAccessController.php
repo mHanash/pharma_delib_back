@@ -67,6 +67,14 @@ class LoginAccessController extends Controller
         $access = LoginAccess::where('link', $link)->first(); 
 
         if ($access !== null) {
+
+            if ($access ->is_used) {
+                $datas = [
+                    'success' => false,
+                    'redirect' => true
+                ];
+            }
+            
             $user = $access->user;
 
             $datas = [
@@ -75,13 +83,12 @@ class LoginAccessController extends Controller
                 'professor' => $user->professor
             ];
 
-            return response($datas)
-                ->header('Access-Control-Allow-Origin', 'http://localhost:8081')
-                ->header('Access-Control-Allow-Headers', 'Accept, Origin, Content-Type, X-Auth-Token');
+            return $datas;
         }
 
         return [
-            'success' => false
+            'success' => false,
+            'redirect' => false
         ];
 
     }

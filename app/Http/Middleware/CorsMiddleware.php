@@ -24,7 +24,7 @@ class CorsMiddleware
         if($request->getMethod() == "OPTIONS") {
             return response()->make('OK', 200, $headers);
         }
-
+        
         $response = $next($request);
 
         foreach($headers as $key => $value)

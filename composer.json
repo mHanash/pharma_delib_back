@@ -8,7 +8,8 @@
         "php": "^8.0",
         "flipbox/lumen-generator": "^9.1",
         "illuminate/mail": "^9.10",
-        "laravel/lumen-framework": "^9.0"
+        "laravel/lumen-framework": "^9.0",
+        "tymon/jwt-auth": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

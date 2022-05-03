@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LoginAccess;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -38,5 +39,38 @@ class UserController extends Controller
                 'saved' => true
             ];
         }
+    }
+
+    public function login (Request $request) {
+        $email = $request->email;
+        $password = $request->password;
+        
+        $user = User::where('email', $email)->first();
+
+        if ($user === null) {
+            return [
+                'success' => false,
+                'message' => 'Cette addresse mail n\'existe pas dans notre base de données',
+            ];
+        }
+
+        if ($user->type !== $request->type) {
+            return [
+                'success' => false,
+                'message' => 'Accès refusé',
+            ];
+        }
+
+        if (!Hash::check($password, $user->password)) {
+            return [
+                'success' => false,
+                'message' => 'Mot de passe incorrect',
+            ];
+        }
+
+        return [
+            'success' => true,
+            'user' => $user,
+        ];
     }
 }
