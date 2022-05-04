@@ -35,6 +35,10 @@ $router->group(['middleware' => 'cors'], function () use ($router) {
 
     $router->group(['prefix' => 'teacher'], function () use ($router) {
         $router->get('/courses/{teacher_id}', ['as' => 'teacher-courses', 'uses' => 'TeacherController@courses']);
+        $router->get('/works/{teacher_id}', ['as' => 'teacher-courses-works', 'uses' => 'TeacherController@works']);
+        
+        $router->post('/work', ['as' => 'add-work', 'uses' => 'AnnualWorkController@store']);
+        $router->delete('/work', ['as' => 'delete-work', 'uses' => 'AnnualWorkController@destroy']);
     });
 
 });

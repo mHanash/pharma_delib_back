@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'email', 'student_id','professor_id', 'password'
+        'email', 'student_id','professor_id'
     ];
 
     /**
@@ -34,6 +34,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     public function student(){
@@ -50,5 +51,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function login_access(){
         return $this->belongsTo(LoginAccess::class);
+    }
+
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims() {
+        return [];
     }
 }
